@@ -1,0 +1,40 @@
+######################
+#Random Walk Exercise#
+######################
+
+# Roll a dice. 
+# If you roll 1 or 2, you step back 1
+# If you roll 3, 4, 5 you step forward 1
+# If you roll 6, you can roll again and step forward the amount you rolled 
+
+# Importing NumPy as np
+import numpy as np
+
+# Setting seed to a random integer (pseudo-random)
+np.random.seed(123)    # Seed makes sure that the random integers are always the same (hence pseudo-random)
+
+# Initialization
+random_walk = [0]    # Creating a list with where the random walk start at 0
+
+# Creating a loop
+for x in range(100) :    # Reiterating 100 times
+    step = random_walk[-1]    # Setting step equal to the last element in the list
+    dice = np.random.randint(1,7)    # Dice is equal to a randomly generated number between 1-6 (seed makes sure that the same number is rolled on each turn)
+
+    if dice <= 2:
+        step = max(0, step - 1)
+    elif dice <= 5:
+        step = step + 1
+    else:
+        step = step + np.random.randint(1,7)
+
+    random_walk.append(step)    # Adding the number of steps to the list
+
+# Import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+
+# Plot random_walk
+plt.plot(random_walk)
+
+# Show the plot
+plt.show()
